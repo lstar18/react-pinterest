@@ -33,7 +33,7 @@ class MyNavBar extends React.Component {
                     : ''
                 }
               </li>
-              </ul>
+            </ul>
           </div>
         </nav>
       </div>
