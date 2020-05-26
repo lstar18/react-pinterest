@@ -33,6 +33,15 @@ class BoardContainer extends React.Component {
       .catch((err) => console.error('cannot remove board', err));
   };
 
+  saveNewBoard = (newBoard) => {
+    boardsData.saveBoard(newBoard)
+      .then(() => {
+        this.getAllBoards();
+        this.setState({ formOpen: false });
+      })
+      .catch((err) => console.error('unable to add board', err));
+  }
+
   render() {
     const { boards, formOpen } = this.state;
     const { setSingleBoard } = this.props;
@@ -41,7 +50,7 @@ class BoardContainer extends React.Component {
       <div className="BoardContainer">
         <h2> Boards </h2>
         <button className="btn btn-warning mb-2" onClick={() => this.setState({ formOpen: true })}> <i className="fas fa-plus"></i> </button>
-        {formOpen ? <BoardForm /> : '' }
+        {formOpen ? <BoardForm saveNewBoard={this.saveNewBoard}/> : '' }
         <div className="d-flex flex-wrap">
           { makeBoards }
         </div>
