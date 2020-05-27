@@ -27,14 +27,14 @@ class PinForm extends React.Component {
   savePin = (e) => {
     e.preventDefault();
     const { pinImageUrl, pinTitle } = this.state;
-    const { boardId } = this.props;
+    const { boardId, saveNewPin } = this.props;
     const newPin = {
       boardId,
       imageUrl: pinImageUrl,
       title: pinTitle,
       uid: authData.getUid(),
     };
-    console.error('new pin', newPin);
+    saveNewPin(newPin);
   }
 
   render() {

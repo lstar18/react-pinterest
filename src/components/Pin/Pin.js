@@ -5,7 +5,7 @@ import pinShape from '../../helpers/propz/pinShape';
 
 class Pin extends React.Component {
   static propTypes = {
-    pins: pinShape.pinShape,
+    pin: pinShape.pinShape,
     removePins: PropTypes.func.isRequired,
   }
 
