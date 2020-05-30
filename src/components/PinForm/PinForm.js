@@ -51,10 +51,10 @@ class PinForm extends React.Component {
             onChange={this.titleChange} />
           </div>
           <div className="form-group">
-            <label htmlFor="pini-image-url">Pin Image </label>
+            <label htmlFor="pin-image-url">Pin Image </label>
             <input type="text"
             className="form-control"
-            id="pini-image-url"
+            id="pin-image-url"
             value={pinImageUrl}
             onChange={this.imageUrlChange} />
           </div>
