@@ -12,6 +12,14 @@ class PinForm extends React.Component {
   state = {
     pinTitle: '',
     pinImageUrl: '',
+    isEditing: false,
+  }
+
+  componentDidMount() {
+    const { pin } = this.props;
+    if (pin.title) {
+      this.setState({ pinTitle: pin.title, pinImageUrl: pin.imageUrl, isEditing: true });
+    }
   }
 
   titleChange = (e) => {
@@ -37,9 +45,22 @@ class PinForm extends React.Component {
     saveNewPin(newPin);
   }
 
-  render() {
-    const { pinTitle, pinImageUrl } = this.state;
-    return (
+updatePin = (e) => {
+  e.preventDefault();
+  const { pinImageUrl, pinTitle } = this.state;
+  const { boardId, putPin, pin } = this.props;
+  const updatedPin = {
+    boardId,
+    imageUrl: pinImageUrl,
+    title: pinTitle,
+    uid: authData.getUid(),
+  };
+  putPin(pin.id, updatedPin);
+}
+
+render() {
+  const { pinTitle, pinImageUrl, isEditing } = this.state;
+  return (
       <div className="PinForm col-6 offset-3">
         <form>
           <div className="form-group">
@@ -58,10 +79,14 @@ class PinForm extends React.Component {
             value={pinImageUrl}
             onChange={this.imageUrlChange} />
           </div>
-          <button type="submit" className="btn btn-dark" onClick={this.savePin}>Save Pin </button>
+          {
+            isEditing
+              ? <button type="submit" className="btn btn-dark" onClick={this.updatePin}>Update Pin </button>
+              : <button type="submit" className="btn btn-dark" onClick={this.savePin}>Save Pin </button>
+          }
           </form>
       </div>
-    );
-  }
+  );
+}
 }
 export default PinForm;
