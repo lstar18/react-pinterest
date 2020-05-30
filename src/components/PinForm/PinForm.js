@@ -7,6 +7,8 @@ import authData from '../../helpers/data/authData';
 class PinForm extends React.Component {
   static propTypes = {
     boardId: PropTypes.string.isRequired,
+    putPin: PropTypes.func.isRequired,
+    pin: PropTypes.object.isRequired,
   }
 
   state = {
